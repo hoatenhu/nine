@@ -16,6 +16,12 @@ export default StyleSheet.create({
     width: '100%',
     position: 'absolute',
   },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    height: Metrics.screenWidth * 1.25,
+    width: '100%',
+  },
   arrowLeft: {
     transform: [{rotate: '180deg'}],
     tintColor: Colors.white,
@@ -146,5 +152,8 @@ export default StyleSheet.create({
     width: '100%',
     position: 'absolute',
     borderRadius: 10,
+  },
+  categoriesText: {
+    color: Colors.white,
   },
 });

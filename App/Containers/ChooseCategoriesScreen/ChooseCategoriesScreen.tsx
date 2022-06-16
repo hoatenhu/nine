@@ -1,23 +1,16 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import React, {useEffect, useState} from 'react';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Colors, Fonts, Metrics} from '../../Themes';
 import images from '../../Themes/Image';
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 import styles from './Styles/ChooseCategoriesScreenStyle';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList} from 'react-native-gesture-handler';
+import {getAsyncStorage} from '../../Functions/AsyncStorageFunction';
+import {AsyncStoreKey} from '../../Config/AppConfig';
+import {useDispatch} from 'react-redux';
+import UserActions from '../../Redux/UserRedux';
 
 const fakeData = {
   categories: [
@@ -150,6 +143,8 @@ const fakeData = {
 };
 
 const ChooseCategoriesScreen = () => {
+  const dispatch = useDispatch();
+
   const navigation = useNavigation<any>();
 
   const [selectedCats, setSelectedCats] = useState<any>([]);
@@ -163,6 +158,14 @@ const ChooseCategoriesScreen = () => {
       setSelectedCats(selectedCats.filter((id: any) => id !== cat._id));
     } else setSelectedCats([...selectedCats, cat._id]);
   };
+
+  useEffect(() => {
+    getAsyncStorage(AsyncStoreKey.ACCESS_TOKEN).then(accessToken => {
+      accessToken
+        ? dispatch(UserActions.checkTokenRequest(accessToken))
+        : console.log('No AccessToken');
+    });
+  }, []);
 
   const renderHeader = () => (
     <>
@@ -196,12 +199,7 @@ const ChooseCategoriesScreen = () => {
       <Image
         source={images.chooseImage}
         resizeMode={'stretch'}
-        style={{
-          position: 'absolute',
-          top: 0,
-          height: Metrics.screenWidth * 1.25,
-          width: '100%',
-        }}
+        style={styles.backgroundImage}
       />
       <LinearGradient
         start={{x: 0, y: 0.8}}
@@ -229,8 +227,7 @@ const ChooseCategoriesScreen = () => {
                 style={styles.gradientButtonColor}
               />
             )}
-
-            <Text style={{color: 'white'}}>{item.name}</Text>
+            <Text style={styles.categoriesText}>{item.name}</Text>
           </TouchableOpacity>
         )}
       />
