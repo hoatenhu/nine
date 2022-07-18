@@ -9,6 +9,7 @@ const images = {
   xxxhpiLoading: require('../Assets/Icons/drawable-xxxhdpi/ic_loading.png'),
   logo: require('../Assets/Images/sign_up.jpg'),
   chooseImage: require('../Assets/Images/choose_image.png'),
+  dish: require('../Assets/Images/dish.png'),
 };
 
 const getRequire = (type: number) => {

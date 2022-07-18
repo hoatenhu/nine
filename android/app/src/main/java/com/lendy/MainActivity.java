@@ -1,4 +1,4 @@
-package com.lendy;
+package com.melin;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

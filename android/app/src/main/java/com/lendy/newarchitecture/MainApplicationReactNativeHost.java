@@ -1,4 +1,4 @@
-package com.lendy.newarchitecture;
+package com.melin.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.lendy.BuildConfig;
-import com.lendy.newarchitecture.components.MainComponentsRegistry;
-import com.lendy.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.melin.BuildConfig;
+import com.melin.newarchitecture.components.MainComponentsRegistry;
+import com.melin.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

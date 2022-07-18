@@ -6,14 +6,17 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  FlatList,
+  Pressable,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Modal from 'react-native-modal';
+
 import images from '../../Themes/Image';
 
 import styles from './Styles/ChooseCategoriesScreenStyle';
 import {useNavigation} from '@react-navigation/native';
-import {FlatList} from 'react-native-gesture-handler';
 import {getAsyncStorage} from '../../Functions/AsyncStorageFunction';
 import {AsyncStoreKey} from '../../Config/AppConfig';
 import {useDispatch} from 'react-redux';
@@ -24,10 +27,16 @@ const fakeData = {
     {
       _id: '627a71c1dfcfa579ffcc5260',
       name: 'Relationships',
+      category: 'dish',
+      type: 'Phở',
+      rate: 4,
+      ordered: 1201,
     },
     {
       _id: '627a7a34dfcfa579ffcc5264',
       name: 'Family',
+      category: 'drink',
+      type: 'Sinh tố',
     },
     {
       _id: '627a7a3bdfcfa579ffcc5265',
@@ -155,14 +164,30 @@ const ChooseCategoriesScreen = () => {
   const navigation = useNavigation<any>();
 
   const [selectedCats, setSelectedCats] = useState<any>([]);
+  const [isModalVisible, setModalVisible] = useState<boolean>(false);
+
+  const toggleModal = () => {
+    setModalVisible(prevIsModalVisible => !prevIsModalVisible);
+  };
+
+  const handleCloseAddCategoryModal = () => {};
 
   const handleGoBack = () => {
     navigation.goBack();
   };
 
   const renderCategories = ({item, index}: {item: any; index: any}) => (
-    <View style={{padding: 10}}>
+    <View key={`category_key_${index}`} style={styles.categoryItemWrap}>
+      <Image source={images.dish} style={{height: 50, width: 50}} />
       <Text>{item.name}</Text>
+      <View style={styles.editWrap}>
+        <TouchableOpacity delayLongPress={0}>
+          <Text style={styles.editText}>Chỉnh sửa</Text>
+        </TouchableOpacity>
+        <TouchableOpacity delayLongPress={0}>
+          <Text style={styles.deleteText}>Xoá</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
@@ -189,23 +214,70 @@ const ChooseCategoriesScreen = () => {
         </TouchableOpacity>
       </ScrollView>
       <View style={{flex: 1}}>
-        <FlatList data={fakeData.categories} renderItem={renderCategories} />
+        <FlatList
+          data={fakeData.categories}
+          renderItem={renderCategories}
+          showsVerticalScrollIndicator={false}
+        />
       </View>
+      <TouchableOpacity
+        style={styles.addButton}
+        delayLongPress={0}
+        onPress={toggleModal}>
+        <Text style={styles.addText}>+</Text>
+      </TouchableOpacity>
+      <Modal
+        isVisible={isModalVisible}
+        useNativeDriver
+        hideModalContentWhileAnimating
+        animationOutTiming={10}
+        backdropTransitionInTiming={0}
+        backdropTransitionOutTiming={0}
+        animationIn={'fadeIn'}
+        animationOut={'fadeOut'}>
+        <View style={styles.viewInModal}>
+          <TouchableOpacity
+            delayLongPress={0}
+            style={styles.closeModalButton}
+            onPress={toggleModal}>
+            <Text>X</Text>
+          </TouchableOpacity>
 
-      {/* <View style={styles.content}>
-        <Text style={styles.categoryName}>
-          Tên mục <Text style={styles.require}>*</Text>
-        </Text>
-        <TextInput style={styles.categoryNameInput} />
-        <Text style={styles.categoryName}>
-          Ảnh thư mục <Text style={styles.require}>*</Text>
-        </Text>
-        <TextInput style={styles.categoryNameInput} />
-        <Text style={styles.categoryName}>
-          Tên mục <Text style={styles.require}>*</Text>
-        </Text>
-        <TextInput style={styles.categoryNameInput} />
-      </View> */}
+          <Text>Danh mục</Text>
+          <TouchableOpacity style={styles.selectCatButton}>
+            <Text>Chưa biết</Text>
+            <Image
+              source={require('../../Assets/Icons/right-arrow.png')}
+              style={styles.showSelectListIcon}
+            />
+          </TouchableOpacity>
+          <Text>Loại</Text>
+          <TouchableOpacity style={styles.selectCatButton}>
+            <Text>Chưa biết</Text>
+            <Image
+              source={require('../../Assets/Icons/right-arrow.png')}
+              style={styles.showSelectListIcon}
+            />
+          </TouchableOpacity>
+          <Text>Tên món</Text>
+          <TextInput style={styles.categoryInput} placeholder="Phở bò" />
+          <Text>Giá</Text>
+          <TextInput
+            style={styles.categoryInput}
+            keyboardType="numeric"
+            placeholder="Phở bò"
+          />
+          <Text>Mô tả</Text>
+          <TextInput
+            style={styles.categoryInput}
+            keyboardType="numeric"
+            placeholder="Phở bò"
+          />
+          <TouchableOpacity style={styles.confirmAddButton}>
+            <Text>Thêm</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };

@@ -1,4 +1,4 @@
-package com.lendy.newarchitecture.components;
+package com.melin.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
