@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Lendy.app"
-               BlueprintName = "Lendy"
-               ReferencedContainer = "container:Lendy.xcodeproj">
+               BuildableName = "Melin.app"
+               BlueprintName = "Melin"
+               ReferencedContainer = "container:Melin.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "LendyTests.xctest"
-               BlueprintName = "LendyTests"
-               ReferencedContainer = "container:Lendy.xcodeproj">
+               BuildableName = "MelinTests.xctest"
+               BlueprintName = "MelinTests"
+               ReferencedContainer = "container:Melin.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Lendy.app"
-            BlueprintName = "Lendy"
-            ReferencedContainer = "container:Lendy.xcodeproj">
+            BuildableName = "Melin.app"
+            BlueprintName = "Melin"
+            ReferencedContainer = "container:Melin.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Lendy.app"
-            BlueprintName = "Lendy"
-            ReferencedContainer = "container:Lendy.xcodeproj">
+            BuildableName = "Melin.app"
+            BlueprintName = "Melin"
+            ReferencedContainer = "container:Melin.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

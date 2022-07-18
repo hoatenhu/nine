@@ -5,6 +5,7 @@ const colors = {
   blueText: '#556799',
   fadeBlack: '#4A4A4A',
   transparent: 'transparent',
+  red: '#ff2200',
   orginal: '#222C65',
   blue: '#243B80',
   fadeBlue: '#243B804d',

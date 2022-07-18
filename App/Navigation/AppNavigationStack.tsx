@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 // Screens
 import {SignUpScreen} from '../Containers/Auth/';
-import {ChooseCategoriesScreen} from '../Containers/ChooseCategoriesScreen';
+import {CategoryScreen} from '../Containers/CategoryScreen';
 
 // Type
 import {MainStackType} from './Type/AppNavigationType';
@@ -25,8 +25,8 @@ const MainNavigator = () => {
       initialRouteName="SignUpScreen">
       <MainStack.Screen name={'SignUpScreen'} component={SignUpScreen} />
       <MainStack.Screen
-        name={'ChooseCategoriesScreen'}
-        component={ChooseCategoriesScreen}
+        name={'CategoryScreen'}
+        component={CategoryScreen}
       />
     </MainStack.Navigator>
   );

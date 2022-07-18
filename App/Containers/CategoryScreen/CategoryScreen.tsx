@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import images from '../../Themes/Image';
@@ -153,22 +160,14 @@ const ChooseCategoriesScreen = () => {
     navigation.goBack();
   };
 
-  const handlePressCat = (cat: any) => {
-    if (selectedCats.includes(cat._id)) {
-      setSelectedCats(selectedCats.filter((id: any) => id !== cat._id));
-    } else setSelectedCats([...selectedCats, cat._id]);
-  };
+  const renderCategories = ({item, index}: {item: any; index: any}) => (
+    <View style={{padding: 10}}>
+      <Text>{item.name}</Text>
+    </View>
+  );
 
-  useEffect(() => {
-    getAsyncStorage(AsyncStoreKey.ACCESS_TOKEN).then(accessToken => {
-      accessToken
-        ? dispatch(UserActions.checkTokenRequest(accessToken))
-        : console.log('No AccessToken');
-    });
-  }, []);
-
-  const renderHeader = () => (
-    <>
+  return (
+    <SafeAreaView edges={['top']} style={{flex: 1}}>
       <View style={styles.header}>
         <TouchableOpacity onPress={handleGoBack} delayPressIn={0}>
           <Image
@@ -177,60 +176,36 @@ const ChooseCategoriesScreen = () => {
             resizeMode="contain"
           />
         </TouchableOpacity>
-        <TouchableOpacity disabled={selectedCats.length === 0} delayPressIn={0}>
-          <Text
-            style={[
-              styles.doneButton,
-              selectedCats.length === 0 && styles.hideDoneButton,
-            ]}>
-            Done
-          </Text>
-        </TouchableOpacity>
       </View>
-      <Text style={styles.welcomeText}>Wellcome to Nexle Entrance Test</Text>
-      <Text style={styles.subWelcomeText}>
-        Please select categories what you would like to see on your feed. You
-        can set this later on Filter.
-      </Text>
-    </>
-  );
-  return (
-    <SafeAreaView edges={['top']} style={{}}>
-      <Image
-        source={images.chooseImage}
-        resizeMode={'stretch'}
-        style={styles.backgroundImage}
-      />
-      <LinearGradient
-        start={{x: 0, y: 0.8}}
-        end={{x: 0, y: 0}}
-        colors={['#000000', '#000000', 'transparent']}
-        style={styles.gradientBackground}
-      />
-      <FlatList
-        ListHeaderComponent={renderHeader}
-        // scrollEnabled={false}s
-        data={fakeData.categories}
-        numColumns={3}
-        columnWrapperStyle={styles.columnWrapperStyle}
-        contentContainerStyle={styles.categoriesContainer}
-        renderItem={({item}) => (
-          <TouchableOpacity
-            style={styles.categoryButton}
-            delayPressIn={0}
-            onPress={() => handlePressCat(item)}>
-            {selectedCats.includes(item._id) && (
-              <LinearGradient
-                start={{x: 0, y: 1}}
-                end={{x: 0, y: 0}}
-                colors={['#8A32A9', '#8A00FF']}
-                style={styles.gradientButtonColor}
-              />
-            )}
-            <Text style={styles.categoriesText}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-      />
+      <ScrollView horizontal style={styles.categoriesWrap}>
+        <TouchableOpacity style={styles.categoryButton}>
+          <Text>Danh mục</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.categoryButton}>
+          <Text>Món ăn</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.categoryButton}>
+          <Text>Đồ uống</Text>
+        </TouchableOpacity>
+      </ScrollView>
+      <View style={{flex: 1}}>
+        <FlatList data={fakeData.categories} renderItem={renderCategories} />
+      </View>
+
+      {/* <View style={styles.content}>
+        <Text style={styles.categoryName}>
+          Tên mục <Text style={styles.require}>*</Text>
+        </Text>
+        <TextInput style={styles.categoryNameInput} />
+        <Text style={styles.categoryName}>
+          Ảnh thư mục <Text style={styles.require}>*</Text>
+        </Text>
+        <TextInput style={styles.categoryNameInput} />
+        <Text style={styles.categoryName}>
+          Tên mục <Text style={styles.require}>*</Text>
+        </Text>
+        <TextInput style={styles.categoryNameInput} />
+      </View> */}
     </SafeAreaView>
   );
 };

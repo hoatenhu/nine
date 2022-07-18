@@ -48,7 +48,7 @@ const SignInScreen = () => {
   const handlePressContinue = () => {
     Keyboard.dismiss();
     dispatch(AuthActions.signUpRequest({email, password}));
-    navigation.navigate('ChooseCategoriesScreen');
+    navigation.navigate('CategoryScreen');
   };
   return (
     <SafeAreaView edges={['top']} style={{flex: 1}}>
@@ -58,7 +58,6 @@ const SignInScreen = () => {
         style={{
           position: 'absolute',
           top: 0,
-          // zIndex: 1,
           height: Metrics.screenWidth * 1.25,
           width: '100%',
         }}
