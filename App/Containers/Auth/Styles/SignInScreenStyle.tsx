@@ -16,14 +16,29 @@ export default StyleSheet.create({
     width: 20,
     height: 20,
   },
-
+  backButton: {
+    margin: 10,
+    width: 24,
+  },
+  resendCodeWrap: {
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
+    marginVertical: 10,
+    marginRight: 20,
+  },
+  resendButton: {
+    color: Colors.lightBlue,
+  },
   arrowLeft: {
     transform: [{rotate: '180deg'}],
-    tintColor: Colors.white,
+    tintColor: Colors.black,
     width: 20,
     height: 20,
   },
-
+  logoTitle: {
+    fontSize: 24,
+    alignSelf: 'center',
+  },
   tittle: {
     fontFamily: Fonts.regular,
     fontSize: 22,
@@ -42,6 +57,10 @@ export default StyleSheet.create({
     fontSize: 12,
     color: Colors.gray1,
   },
+  signUpItem: {
+    marginLeft: 10,
+    marginVertical: 6,
+  },
   passwordAddedInput: {
     paddingBottom: 2,
   },
@@ -51,10 +70,15 @@ export default StyleSheet.create({
   input: {
     fontFamily: Fonts.regular,
     color: Colors.gray,
-    fontSize: 19,
-    borderBottomWidth: 1,
-    borderColor: 'red',
-    paddingHorizontal: 0,
+    fontSize: 14,
+    borderWidth: 1,
+    borderColor: Colors.black,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    marginTop: 8,
+    marginLeft: 2,
+    marginRight: 20,
+    borderRadius: 5,
   },
   passwordInput: {
     fontFamily: Fonts.regular,
@@ -109,5 +133,17 @@ export default StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  signUpButton: {
+    marginTop: 10,
+    backgroundColor: Colors.main,
+    width: 120,
+    padding: 10,
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderRadius: 10,
+  },
+  signInButtonText: {
+    color: Colors.white,
   },
 });

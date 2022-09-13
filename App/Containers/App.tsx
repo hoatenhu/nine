@@ -13,11 +13,11 @@ import {StatusBar} from 'react-native';
 const App = () => {
   return (
     <Provider store={store}>
-      <StatusBar
+      {/* <StatusBar
         barStyle={'dark-content'}
         backgroundColor={'transparent'}
         translucent
-      />
+      /> */}
       <RootContainer />
     </Provider>
   );
